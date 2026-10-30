@@ -5,6 +5,7 @@ import 'package:modul_5_6_shopping/models/product.dart';
 import 'package:modul_5_6_shopping/screen/review_screen/review_screen.dart';
 
 import '../../config/app_colors.dart';
+import '../cart_screen/component/cart_controller.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
@@ -110,7 +111,10 @@ class ProductDetailScreen extends StatelessWidget {
           Spacer(),
           Padding(
             padding: .symmetric(horizontal: 40),
-            child: ElevatedButton(onPressed: () {}, child: Text("Add to Cart")),
+            child: ElevatedButton(onPressed: () {
+              cart.add(product);
+              debugPrint('Total quantity ${cart.totalQuantity},Count of goods: ${cart.count}, sum: ${cart.total}');
+            }, child: Text("Add to Cart")),
           ),
           SizedBox(height: 40),
         ],

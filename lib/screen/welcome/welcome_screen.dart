@@ -25,7 +25,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 200,
               decoration: const BoxDecoration(
                 color: AppColors.accentOrange,
-                // скругляем только нужные углы, чтобы форма была не «таблеткой»
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(90),
                   bottomRight: Radius.circular(20),
@@ -41,7 +40,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 200,
               decoration: const BoxDecoration(
                 color: AppColors.accentYellow,
-                // скругляем только нужные углы, чтобы форма была не «таблеткой»
                 borderRadius: BorderRadius.only(
                   bottomLeft: .circular(200),
                   bottomRight: .circular(200),
@@ -59,7 +57,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 300,
               decoration: const BoxDecoration(
                 color: AppColors.peachLight,
-                // скругляем только нужные углы, чтобы форма была не «таблеткой»
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(90),
                   bottomRight: Radius.circular(100),
@@ -75,7 +72,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 400,
               decoration: const BoxDecoration(
                 color: AppColors.peachLight,
-                // скругляем только нужные углы, чтобы форма была не «таблеткой»
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(90),
                   topLeft: .circular(140),
@@ -87,11 +83,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Positioned.fill(
             child: SafeArea(
               child: Column(
-                crossAxisAlignment:.center,
+                crossAxisAlignment: .center,
                 children: [
                   SizedBox(height: 90),
                   Padding(
-                    padding:.only(left: 16),
+                    padding: .only(left: 16),
                     child: Text(
                       "SHOPIN",
                       style: TextStyle(
@@ -114,32 +110,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   SizedBox(height: 8),
                   const Text(
                     'Experience a new way\nof shopping.',
-                    textAlign: TextAlign.center, // две строки по центру
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
-                      height: 1.6, // межстрочный интервал
+                      height: 1.6,
                       color: AppColors.titleIndigo,
                     ),
                   ),
-                  Spacer(),
-                  Padding(
-                    padding:.symmetric(horizontal: 40),
-                    child: ElevatedButton(onPressed: (){
-                      if(AuthCheck.isSigned){
-                        Navigator.pushReplacement(context,MaterialPageRoute(builder:(_)=>
-                            ProductListScreen()));
-                      }
-                      else{
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("«Please sign in»"))
-                        );
-                      }
-                    }, child: Text("Explore")),
-                  ),
-                  SizedBox(height: 40,)
-
                 ],
               ),
+            ),
+          ),
+          Padding(
+            padding: .symmetric(horizontal: 40),
+            child: ElevatedButton(
+              onPressed: () {
+                if (AuthCheck.isSigned) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (_) => ProductListScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("«Please sign in»")));
+                }
+              },
+              child: Text("Explore"),
             ),
           ),
         ],
